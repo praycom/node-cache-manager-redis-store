@@ -2,7 +2,7 @@ import Redis from 'redis';
 
 const redisStore = (...args) => {
   const redisCache = args[0].client ? args[0].client : Redis.createClient(...args);
-  const storeArgs = { ...args[0], ...redisCache.options };
+  const storeArgs = Object.assign({}, args[0], redisCache.options);
 
   return {
     name: 'redis',
